@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { Filter } from './Filter/Filter';
-import { FormAddPhone } from './FormAddConatact/FormAddContact';
+import { FormAddContact } from './FormAddConatact/FormAddContact';
 import { PhonebookList } from './ContactBookList/ContactBookList';
 import { Container } from './ConatactsStyles';
 import toast, { Toaster } from 'react-hot-toast';
@@ -58,7 +58,7 @@ export const Contacts = () => {
   return (
     <Container>
       <Toaster />
-      <FormAddPhone onSubmit={addContacts} />
+      <FormAddContact onSubmit={addContacts} />
       <Filter handleFilter={handleFilter} />
       <PhonebookList items={filteredContacts} removeContacts={removeContacts} />
     </Container>
