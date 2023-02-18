@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Filter } from './Filter/Filter';
 import { FormAddContact } from './FormAddConatact/FormAddContact';
 import { PhonebookList } from './ContactBookList/ContactBookList';
@@ -7,8 +7,15 @@ import { Container } from './ConatactsStyles';
 import toast, { Toaster } from 'react-hot-toast';
 
 export const Contacts = () => {
-  const [contacts, setConstacts] = useState([]);
+  const [contacts, setConstacts] = useState(() => {
+    const value = JSON.parse(localStorage.getItem('contacts'));
+    return value || [];
+  });
   const [filter, setFilter] = useState('');
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   const addContacts = data => {
     if (isDublicate(data)) {
